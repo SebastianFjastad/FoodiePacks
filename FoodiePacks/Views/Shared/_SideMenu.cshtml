@@ -1,0 +1,17 @@
+﻿
+<ul>
+    <!-- Basic Analysis side menu -->
+    <li data-menugroup="basicAnalysis" class="menuItemParent"><a href="#">Basic Analysis</a></li>
+    @Html.MenuLinkSide("Performance Summary", "PFvsBMOverview", "Analytics", "BasicAnalysis")
+    @Html.MenuLinkSide("Active Returns", "PFvsBMActiveReturns", "Analytics", "BasicAnalysis")
+    @Html.MenuLinkSide("Market Cycles", "PFvsBMBullBear", "Analytics", "BasicAnalysis")
+    @Html.MenuLinkSide("Rolling Statistics", "PFvsBMRollingStats", "Analytics", "BasicAnalysis")
+    @Html.MenuLinkSide("Market Sensitivity", "PFvsBMMarketSensitivity", "Analytics", "BasicAnalysis")
+    @Html.MenuLinkSide("Risk Statistics", "PFvsBMPerfStats", "Analytics", "BasicAnalysis")
+
+    <!-- Advanced Analytics -->
+    <li class="menuItemParent" data-menugroup="advancedAnalysis"><a href="#">Advanced Analytics</a></li>
+    @Html.MenuLinkSide("Performance Analysis", "PerformanceAnalysis", "Analytics", "")
+    @Html.MenuLinkSide("Style Analysis", "StyleAnalysis", "Analytics", "")
+
+</ul>

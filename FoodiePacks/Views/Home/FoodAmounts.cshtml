@@ -1,0 +1,89 @@
+﻿@model FoodiePacks.Models.EmailViewModel
+
+@{
+    //sandwich
+    var chSw = Model.CheeseSWs.Sum(x => x.quantity);
+    var chsTom = Model.CheeseToms.Sum(x => x.quantity);
+    var vgM = Model.Vegemites.Sum(x => x.quantity);
+    var eggM = Model.EggMayos.Sum(x => x.quantity);
+    var tunSw = Model.Tunas.Sum(x => x.quantity);
+
+    //pasta
+    var plPast = Model.PlainPastas.Sum(x => x.quantity);
+    var chPast = Model.CheesePastas.Sum(x => x.quantity);
+
+    //sushi
+    var tunAv = Model.TunaAvos.Sum(x => x.quantity);
+    var tunCu = Model.TunaCukes.Sum(x => x.quantity);
+    var cuc = Model.Cukes.Sum(x => x.quantity);
+    var tun = Model.Tunas.Sum(x => x.quantity);
+    var avo = Model.Avos.Sum(x => x.quantity);
+
+    var qtyArray = new int?[] {chSw, chsTom, vgM, eggM, tunSw, plPast, chPast, tunAv, tunCu, cuc, tun, avo};
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Ingredient</th>
+            <th colspan="5">Sandwich</th>
+            <th colspan="2">Pasta</th>
+            <th colspan="5">Sushi</th>
+            <th>Qty</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="border: solid 1px black">
+            <td>Qty</td>
+            <td>@chSw</td>
+            <td>@chsTom</td>
+            <td>@vgM</td>
+            <td>@eggM</td>
+            <td>@tunSw</td>
+            <td>@plPast</td>
+            <td>@chPast</td>
+            <td>@tunAv</td>
+            <td>@tunCu</td>
+            <td>@cuc</td>
+            <td>@tun</td>
+            <td>@avo</td>
+            <td></td>
+        </tr>
+
+        @{
+            foreach (var item in Model.PickingItems.First().GetType().GetProperties())
+            {
+                decimal total = 0;
+                <tr style="border: solid 1px black">
+                    <td>@item.Name</td>
+
+                    @foreach (var pickingItem in Model.PickingItems)
+                    {
+
+                        object val = item.GetValue(pickingItem, null);
+
+                        <td>@val</td>
+
+                        if (val is string)
+                        {
+
+                        }
+                        else
+                        {
+                            decimal x;
+
+                            decimal.TryParse(val.ToString(), out x);
+
+                            var index = Model.PickingItems.IndexOf(pickingItem);
+
+                            var qtyItem = qtyArray[index];
+
+                            total += (x * qtyItem ?? 0);
+                        }
+                    }
+                    <td>@total</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

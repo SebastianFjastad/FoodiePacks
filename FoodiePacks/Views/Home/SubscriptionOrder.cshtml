@@ -1,0 +1,17 @@
+﻿@model List<FoodiePacks.Models.SubscriptionProduct>
+
+
+@foreach (var wkGroup in Model.GroupBy(p => p.Week))
+{
+    <h3>Week @wkGroup.First().Week</h3>
+
+    foreach (var prod in wkGroup)
+    {
+        <div style="display: inline-block;">
+            Name: <label>@prod.Name</label> <br/>
+            Qty: <label>@prod.Quantity</label> <br/>
+            product ID: <label>@prod.Id</label> <br/>
+        </div>
+    }
+    <hr/>
+}

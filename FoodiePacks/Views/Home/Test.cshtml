@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+}
+
+<style type="text/css">
+    p {
+        color: red;
+        font-size: 18px; 
+    }
+</style>
+
+<span>test span</span>
+
+<p>Test 1</p>
+
+<p>Test 2</p>
+
+<p>Test 3</p>
+
+
+<button>Calculate</button>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(function() {
+
+            $('button').click(function() {
+                var amount = $('p').length;
+
+                alert("Amount of p elements: " + amount);
+            });
+
+        })
+    </script>
+}
+
+
+
+
